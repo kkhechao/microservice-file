@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zqkh.file.context.appservice.impl.domain.repository.mappers.dmo.ext.FileRecordDmoMapper" >
+  <resultMap id="BaseResultMap" type="com.zqkh.file.context.appservice.impl.domain.repository.mappers.dmo.FileRecordDmo" >
+    <result column="file_id" property="fileId" jdbcType="VARCHAR" />
+    <result column="biz_id" property="bizId" jdbcType="VARCHAR" />
+    <result column="biz_path" property="bizPath" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.zqkh.file.context.appservice.impl.domain.repository.mappers.dmo.FileRecordDmo" >
+    insert into t_oss_file_record (file_id, biz_id, biz_path, 
+      create_time)
+    values (#{fileId,jdbcType=VARCHAR}, #{bizId,jdbcType=VARCHAR}, #{bizPath,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <sql id="Base_Column_List" >
+    file_id, biz_id, biz_path, create_time
+  </sql>
+
+  <insert id="batchInsert">
+    insert into t_oss_file_record(file_id, biz_path, biz_id, create_time)
+    values
+    <foreach collection="FileRecordDmos" item="item" separator=",">
+      (#{fileId,jdbcType=VARCHAR}, #{item.bizPath,jdbcType=VARCHAR},
+      #{item.bizId,jdbcType=VARCHAR},#{item.createTime,jdbcType=TIMESTAMP})
+    </foreach>
+  </insert>
+
+
+  <select id="selectUseRecord" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from t_oss_file_record
+    where file_id = #{fileId,jdbcType=VARCHAR}
+  </select>
+
+
+  <delete id="deleteUseRecord">
+    delete from t_oss_file_record
+    where file_id = #{fileId,jdbcType=VARCHAR}
+  </delete>
+
+</mapper>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+    <!--<mapping date-format="yyyy-MM-dd">-->
+         <!--<class-a>com.zqkh.file.context.appservice.impl.domain.FileRecord</class-a>-->
+         <!--<class-b>com.zqkh.file.context.appservice.impl.domain.repository.mappers.dmo.FileRecordDmo</class-b>-->
+        <!--&lt;!&ndash; <field>-->
+               <!--<a >uploadTime</a>-->
+               <!--<b>createTime</b>-->
+          <!--</field>&ndash;&gt;-->
+    <!--</mapping>-->
+    <configuration>
+        <custom-converters>
+            <converter type="com.zqkh.file.context.configuration.StringIdentifierConverter">
+                <class-a>com.jovezhao.nest.ddd.Identifier</class-a>
+                <class-b>java.lang.String</class-b>
+            </converter>
+        </custom-converters>
+    </configuration>
+</mappings>
+

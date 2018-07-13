@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zqkh.file.context.appservice.impl.domain.repository.mappers.dmo.ext.FileQueryMapper" >
+
+    <select id="selectUnusedFileByDateTime"   resultType="java.lang.String">
+
+        select id from t_oss_file
+
+        where !EXISTS(select file_id from t_oss_file_record where file_id=id)
+        and upload_date &lt; #{beforDateTime}
+
+    </select>
+</mapper>

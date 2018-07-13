@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zqkh.file.context.appservice.impl.domain.repository.mappers.FileDmoMapper" >
+  <resultMap id="BaseResultMap" type="com.zqkh.file.context.appservice.impl.domain.repository.mappers.dmo.FileDmo" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="size" property="size" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="e_tag" property="eTag" jdbcType="VARCHAR" />
+    <result column="upload_date" property="uploadDate" jdbcType="TIMESTAMP" />
+    <result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, size, type, e_tag, upload_date, img_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_oss_file
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_oss_file
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zqkh.file.context.appservice.impl.domain.repository.mappers.dmo.FileDmo" >
+    insert into t_oss_file (id, name, size, 
+      type, e_tag, upload_date, 
+      img_url)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{eTag,jdbcType=VARCHAR}, #{uploadDate,jdbcType=TIMESTAMP}, 
+      #{imgUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zqkh.file.context.appservice.impl.domain.repository.mappers.dmo.FileDmo" >
+    insert into t_oss_file
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="size != null" >
+        size,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="eTag != null" >
+        e_tag,
+      </if>
+      <if test="uploadDate != null" >
+        upload_date,
+      </if>
+      <if test="imgUrl != null" >
+        img_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="eTag != null" >
+        #{eTag,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadDate != null" >
+        #{uploadDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgUrl != null" >
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zqkh.file.context.appservice.impl.domain.repository.mappers.dmo.FileDmo" >
+    update t_oss_file
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="size != null" >
+        size = #{size,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="eTag != null" >
+        e_tag = #{eTag,jdbcType=VARCHAR},
+      </if>
+      <if test="uploadDate != null" >
+        upload_date = #{uploadDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="imgUrl != null" >
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zqkh.file.context.appservice.impl.domain.repository.mappers.dmo.FileDmo" >
+    update t_oss_file
+    set name = #{name,jdbcType=VARCHAR},
+      size = #{size,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      e_tag = #{eTag,jdbcType=VARCHAR},
+      upload_date = #{uploadDate,jdbcType=TIMESTAMP},
+      img_url = #{imgUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

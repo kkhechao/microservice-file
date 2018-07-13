@@ -1,0 +1,13 @@
+server:
+  port: 8078
+spring:
+  application:
+    name: microservice-file-context
+  profiles:
+    active: dev
+    include: "base"
+  http:
+    multipart:
+      enabled: true
+      max-request-size: 1024MB
+      max-file-size: 1024MB
